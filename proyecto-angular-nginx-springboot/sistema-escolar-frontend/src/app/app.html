@@ -1,0 +1,19 @@
+<header class="app-header">
+  <div class="header-brand">
+    <span class="brand-name">Sistema de Control Escolar</span>
+  </div>
+  <button class="btn-nuevo" type="button" (click)="abrirNuevo()">
+    + Nuevo estudiante
+  </button>
+</header>
+
+<main class="app-main">
+  <app-estudiante-lista (editar)="abrirEdicion($event)"></app-estudiante-lista>
+</main>
+
+<app-estudiante-formulario
+  [abierto]="drawerAbierto"
+  [estudiante]="estudianteSeleccionado"
+  (cerrar)="cerrarDrawer()"
+  (guardado)="onGuardado()"
+></app-estudiante-formulario>

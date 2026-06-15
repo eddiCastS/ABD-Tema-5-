@@ -1,0 +1,35 @@
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: var(--blue);
+  color: var(--white);
+  box-shadow: var(--shadow);
+}
+
+.brand-name {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.btn-nuevo {
+  padding: 9px 16px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-nuevo:hover {
+  background: var(--blue-mid);
+}
+
+.app-main {
+  max-width: 1200px;
+  margin: 24px auto;
+  padding: 0 24px 40px;
+}

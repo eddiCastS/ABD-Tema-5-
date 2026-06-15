@@ -1,0 +1,61 @@
+<div class="toolbar">
+  <input
+    type="text"
+    class="search-input"
+    placeholder="Buscar por nombre, matricula, carrera o correo..."
+    [(ngModel)]="filtro"
+  >
+
+  <div class="toolbar-actions">
+    <button class="btn-secundario" type="button" (click)="cargar()">Refrescar</button>
+    <button class="btn-secundario" type="button" (click)="exportarExcel()">Exportar a Excel</button>
+  </div>
+</div>
+
+@if (cargando) {
+  <div class="estado">Cargando estudiantes...</div>
+} @else if (errorConexion) {
+  <div class="estado estado-error">
+    No se pudo conectar con el microservicio.<br>
+    Verifica que este corriendo en <strong>localhost:8080</strong>
+    (o que el proxy de Nginx hacia <code>/api</code> este activo).
+  </div>
+} @else if (estudiantesFiltrados.length === 0) {
+  <div class="estado">No se encontraron estudiantes.</div>
+} @else {
+  <div class="tabla-wrap">
+    <table class="tabla-estudiantes">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre completo</th>
+          <th>Edad</th>
+          <th>Telefono</th>
+          <th>Correo</th>
+          <th>Matricula</th>
+          <th>Carrera</th>
+          <th>Semestre</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (e of estudiantesFiltrados; track e.id) {
+          <tr>
+            <td>{{ e.id }}</td>
+            <td>{{ e.nombreCompleto }}</td>
+            <td>{{ e.edad }}</td>
+            <td>{{ e.telefono }}</td>
+            <td>{{ e.correo }}</td>
+            <td>{{ e.matricula }}</td>
+            <td>{{ e.carrera }}</td>
+            <td>{{ e.semestre }}</td>
+            <td class="acciones">
+              <button class="btn-icono" type="button" (click)="onEditar(e)" title="Editar">Editar</button>
+              <button class="btn-icono btn-icono-danger" type="button" (click)="eliminar(e)" title="Eliminar">Eliminar</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}
